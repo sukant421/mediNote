@@ -8,11 +8,17 @@ import { validateEnv } from './config';
 
 async function bootstrap() {
   validateEnv();
+
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
   );
-  await app.listen(process.env.PORT || 3000);
-  console.log('app is running on port : ', process.env.PORT);
+
+  const port = Number(process.env.PORT) || 8080;
+
+  console.log('🚀 Starting server...');
+  await app.listen(port, '0.0.0.0');
+  console.log(`✅ App is running on port ${port}`);
 }
+
 bootstrap();
