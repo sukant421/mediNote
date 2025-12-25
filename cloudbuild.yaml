@@ -1,0 +1,29 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+steps:
+  # 1️⃣ Build Docker image
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t
+      - gcr.io/$PROJECT_ID/medinote
+      - .
+
+  # 2️⃣ Push image
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - gcr.io/$PROJECT_ID/medinote
+
+  # 3️⃣ Deploy to Cloud Run
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - medinote
+      - --image=gcr.io/$PROJECT_ID/medinote
+      - --region=asia-south1
+      - --platform=managed
+      - --allow-unauthenticated
