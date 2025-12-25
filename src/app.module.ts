@@ -9,15 +9,15 @@ import { UsersModule } from './users/users.module';
       isGlobal: true,
     }),
 
-    TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        url: configService.get<string>('DB_URL'),
-        autoLoadEntities: true,
-        synchronize: false,
-      }),
-    }),
+    // TypeOrmModule.forRootAsync({
+    //   inject: [ConfigService],
+    //   useFactory: (configService: ConfigService) => ({
+    //     type: 'postgres',
+    //     url: configService.get<string>('DB_URL'),
+    //     autoLoadEntities: true,
+    //     synchronize: false,
+    //   }),
+    // }),
 
     UsersModule,
   ],

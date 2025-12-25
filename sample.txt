@@ -4,3 +4,11 @@ docker run -d --name postgres
 -e POSTGRES_DB=medinote 
 -p 5432:5432 
 postgres:15
+
+
+
+postgresql://postgres:admin123@/medinote?host=/cloudsql/ecstatic-valve-441717-n8:asia-south1:medi-note
+
+
+
+99300616214-compute@developer.gserviceaccount.com
