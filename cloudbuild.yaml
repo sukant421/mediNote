@@ -15,6 +15,17 @@ steps:
     args:
       - push
       - gcr.io/$PROJECT_ID/medinote
+  
+  # 2️⃣ Run migrations
+  - name: migrations step
+    entrypoint: sh
+    args:
+      - -c
+      - |
+        docker run --rm \
+          -e DB_URL=$DB_URL \
+          gcr.io/$PROJECT_ID/medinote \
+          npm run migration:run
 
   # 3 Deploy to Cloud Run
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
