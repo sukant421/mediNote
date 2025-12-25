@@ -1,0 +1,6 @@
+docker run -d --name postgres 
+-e POSTGRES_USER=app_user 
+-e POSTGRES_PASSWORD=secret123 
+-e POSTGRES_DB=medinote 
+-p 5432:5432 
+postgres:15

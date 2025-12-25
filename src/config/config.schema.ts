@@ -2,4 +2,5 @@ import * as Joi from 'joi';
 
 export const configSchema = Joi.object({
     PORT: Joi.number().required().default(8000),
+    DB_URL: Joi.string().required(),
 });

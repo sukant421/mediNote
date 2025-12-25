@@ -5,6 +5,8 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { validateEnv } from './config';
+import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   validateEnv();
@@ -14,7 +16,14 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  const port = Number(process.env.PORT) || 8080;
+  app.useGlobalPipes(new ValidationPipe(
+    { whitelist: true, forbidNonWhitelisted: true }
+  ));
+
+  app.setGlobalPrefix('api');
+
+  const configService = new ConfigService();
+  const port = configService.get<number>('PORT') || 8000;
 
   console.log('🚀 Starting server...');
   await app.listen(port, '0.0.0.0');
