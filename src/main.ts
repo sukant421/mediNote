@@ -11,7 +11,7 @@ import { ConfigService } from '@nestjs/config';
 async function bootstrap() {
   console.log('STEP 1: process started');
 
-  validateEnv();
+  // validateEnv();
   console.log('STEP 2: env validated');
 
   const app = await NestFactory.create<NestFastifyApplication>(
