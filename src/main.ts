@@ -12,7 +12,7 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT || 3000);
   console.log('app is running on port : ', process.env.PORT);
 }
 bootstrap();
